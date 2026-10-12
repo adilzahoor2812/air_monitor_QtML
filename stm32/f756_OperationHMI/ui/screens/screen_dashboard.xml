@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Main operator dashboard.
+  Open in LVGL Pro → select target ili9488_480x320 (or 800x480).
+  Later on F756: set subjects from DHT22 / F401 UART / ETH.
+-->
+<screen permanent="true">
+  <view extends="lv_obj"
+        width="100%"
+        height="100%"
+        flex_flow="column"
+        style_bg_color="0x101418"
+        style_bg_opa="255"
+        style_pad_all="0"
+        style_pad_row="0"
+        style_border_width="0">
+
+    <!-- ===== Header ===== -->
+    <lv_obj width="100%" height="44"
+            flex_flow="row"
+            style_bg_color="0x1A2329"
+            style_bg_opa="255"
+            style_pad_hor="12"
+            style_pad_ver="6"
+            style_pad_column="10"
+            style_border_side="bottom"
+            style_border_width="1"
+            style_border_color="0x263238"
+            style_flex_cross_place="center"
+            style_flex_main_place="space_between">
+
+      <lv_obj width="content" height="content"
+              flex_flow="column"
+              style_bg_opa="0"
+              style_border_width="0"
+              style_pad_row="0">
+        <lv_label text="AIR MONITOR"
+                  style_text_color="0xECEFF1"
+                  style_text_letter_space="2"/>
+        <lv_label text="F756 · industrial air monitoring"
+                  style_text_color="0x90A4AE"/>
+      </lv_obj>
+
+      <lv_obj width="content" height="content"
+              flex_flow="row"
+              style_bg_opa="0"
+              style_border_width="0"
+              style_pad_column="8"
+              style_flex_cross_place="center">
+        <link_pill label="F401" online_subject="link_f401"/>
+        <link_pill label="ETH" online_subject="link_eth"/>
+        <link_pill label="NFC" online_subject="link_nfc"/>
+      </lv_obj>
+    </lv_obj>
+
+    <!-- ===== Body ===== -->
+    <lv_obj width="100%" height="content"
+            flex_grow="1"
+            flex_flow="column"
+            style_pad_all="10"
+            style_pad_row="10"
+            style_bg_opa="0"
+            style_border_width="0">
+
+      <!-- Metric row -->
+      <lv_obj width="100%" height="content"
+              flex_flow="row"
+              flex_grow="1"
+              style_pad_column="10"
+              style_bg_opa="0"
+              style_border_width="0">
+
+        <!-- Temperature -->
+        <lv_obj width="content" height="100%"
+                flex_grow="1"
+                flex_flow="column"
+                style_bg_color="0x1A2329"
+                style_bg_opa="255"
+                style_radius="10"
+                style_border_width="1"
+                style_border_color="0x263238"
+                style_pad_all="12"
+                style_pad_row="8">
+          <lv_obj width="100%" height="4"
+                  style_bg_color="0xFB8C00"
+                  style_bg_opa="255"
+                  style_radius="2"
+                  style_border_width="0"/>
+          <lv_label text="TEMPERATURE"
+                    style_text_color="0x90A4AE"
+                    style_text_letter_space="1"/>
+          <lv_obj width="100%" height="content"
+                  flex_flow="row"
+                  style_pad_column="4"
+                  style_flex_cross_place="end"
+                  style_bg_opa="0"
+                  style_border_width="0">
+            <lv_label name="lbl_temp"
+                      bind_text="temp_c"
+                      bind_text-fmt="%.1f"
+                      style_text_color="0xECEFF1"/>
+            <lv_label text="°C"
+                      style_text_color="0xFB8C00"/>
+          </lv_obj>
+        </lv_obj>
+
+        <!-- Humidity -->
+        <lv_obj width="content" height="100%"
+                flex_grow="1"
+                flex_flow="column"
+                style_bg_color="0x1A2329"
+                style_bg_opa="255"
+                style_radius="10"
+                style_border_width="1"
+                style_border_color="0x263238"
+                style_pad_all="12"
+                style_pad_row="8">
+          <lv_obj width="100%" height="4"
+                  style_bg_color="0x43A047"
+                  style_bg_opa="255"
+                  style_radius="2"
+                  style_border_width="0"/>
+          <lv_label text="HUMIDITY"
+                    style_text_color="0x90A4AE"
+                    style_text_letter_space="1"/>
+          <lv_obj width="100%" height="content"
+                  flex_flow="row"
+                  style_pad_column="4"
+                  style_flex_cross_place="end"
+                  style_bg_opa="0"
+                  style_border_width="0">
+            <lv_label name="lbl_hum"
+                      bind_text="hum_pct"
+                      bind_text-fmt="%.1f"
+                      style_text_color="0xECEFF1"/>
+            <lv_label text="%"
+                      style_text_color="0x29B6F6"/>
+          </lv_obj>
+        </lv_obj>
+
+        <!-- Distance (from F401 later) -->
+        <lv_obj width="content" height="100%"
+                flex_grow="1"
+                flex_flow="column"
+                style_bg_color="0x1A2329"
+                style_bg_opa="255"
+                style_radius="10"
+                style_border_width="1"
+                style_border_color="0x263238"
+                style_pad_all="12"
+                style_pad_row="8">
+          <lv_obj width="100%" height="4"
+                  style_bg_color="0x29B6F6"
+                  style_bg_opa="255"
+                  style_radius="2"
+                  style_border_width="0"/>
+          <lv_label text="DISTANCE"
+                    style_text_color="0x90A4AE"
+                    style_text_letter_space="1"/>
+          <lv_obj width="100%" height="content"
+                  flex_flow="row"
+                  style_pad_column="4"
+                  style_flex_cross_place="end"
+                  style_bg_opa="0"
+                  style_border_width="0">
+            <lv_label name="lbl_dist"
+                      bind_text="distance_cm"
+                      bind_text-fmt="%d"
+                      style_text_color="0xECEFF1"/>
+            <lv_label text="cm"
+                      style_text_color="0x29B6F6"/>
+          </lv_obj>
+        </lv_obj>
+      </lv_obj>
+
+      <!-- Zone + status + ACK -->
+      <lv_obj width="100%" height="content"
+              flex_flow="row"
+              style_pad_column="10"
+              style_bg_opa="0"
+              style_border_width="0"
+              style_flex_cross_place="stretch">
+
+        <!-- Zone panel -->
+        <lv_obj width="content" height="content"
+                flex_grow="1"
+                flex_flow="column"
+                style_bg_color="0x1A2329"
+                style_bg_opa="255"
+                style_radius="10"
+                style_border_width="1"
+                style_border_color="0x263238"
+                style_pad_all="12"
+                style_pad_row="6">
+          <lv_label text="PROXIMITY ZONE"
+                    style_text_color="0x90A4AE"
+                    style_text_letter_space="1"/>
+          <lv_label name="lbl_zone"
+                    bind_text="zone_label"
+                    style_text_color="0x43A047"/>
+          <lv_label bind_text="status_line"
+                    style_text_color="0x90A4AE"
+                    long_mode="scroll_circular"
+                    width="100%"/>
+        </lv_obj>
+
+        <!-- ACK -->
+        <lv_obj width="content" height="content"
+                flex_flow="column"
+                style_bg_color="0x1A2329"
+                style_bg_opa="255"
+                style_radius="10"
+                style_border_width="1"
+                style_border_color="0x263238"
+                style_pad_all="12"
+                style_pad_row="8"
+                style_flex_main_place="center"
+                style_flex_cross_place="center">
+          <lv_label text="OPERATOR"
+                    style_text_color="0x90A4AE"
+                    style_text_letter_space="1"/>
+          <lv_button name="btn_ack"
+                     width="120"
+                     height="44"
+                     style_bg_color="0x29B6F6"
+                     style_bg_opa="255"
+                     style_radius="8"
+                     style_shadow_width="0">
+            <lv_label text="ACK"
+                      style_text_color="0x101418"
+                      style_text_letter_space="2"/>
+            <subject_set_int_event subject="ack_latched" trigger="clicked" value="1"/>
+          </lv_button>
+          <lv_label text="ACK latched"
+                    style_text_color="0x43A047">
+            <bind_flag_if_eq subject="ack_latched" flag="hidden" ref_value="0"/>
+          </lv_label>
+        </lv_obj>
+      </lv_obj>
+    </lv_obj>
+  </view>
+</screen>

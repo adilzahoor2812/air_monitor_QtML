@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Small OK/OFF status pill driven by an int subject (1=online) -->
+<component>
+  <api>
+    <prop name="label" type="string" default="LINK"/>
+    <prop name="online_subject" type="subject"/>
+  </api>
+
+  <view extends="lv_obj"
+        width="content"
+        height="content"
+        flex_flow="row"
+        style_pad_hor="10"
+        style_pad_ver="4"
+        style_pad_column="6"
+        style_radius="14"
+        style_bg_color="0x1A2329"
+        style_bg_opa="255"
+        style_border_width="1"
+        style_border_color="0x263238"
+        style_flex_cross_place="center">
+
+    <!-- Online dot -->
+    <lv_obj width="8" height="8"
+            style_radius="4"
+            style_bg_color="0x43A047"
+            style_bg_opa="255"
+            style_border_width="0">
+      <bind_flag_if_eq subject="$online_subject" flag="hidden" ref_value="0"/>
+    </lv_obj>
+
+    <!-- Offline dot -->
+    <lv_obj width="8" height="8"
+            style_radius="4"
+            style_bg_color="0x90A4AE"
+            style_bg_opa="255"
+            style_border_width="0">
+      <bind_flag_if_eq subject="$online_subject" flag="hidden" ref_value="1"/>
+    </lv_obj>
+
+    <lv_label text="$label"
+              style_text_color="0x90A4AE"/>
+  </view>
+</component>

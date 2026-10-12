@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Air Monitor — open this folder in LVGL Pro Editor -->
+<project name="air_monitor" lvgl_version="9.5.0">
+  <targets>
+    <!-- Typical SPI ILI9488 / 3.5" TFT -->
+    <target name="ili9488_480x320">
+      <display width="480" height="320"/>
+    </target>
+    <!-- Larger panel option -->
+    <target name="panel_800x480">
+      <display width="800" height="480"/>
+    </target>
+  </targets>
+</project>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<globals>
+  <consts>
+    <color name="bg" value="0x101418"/>
+    <color name="panel" value="0x1A2329"/>
+    <color name="track" value="0x263238"/>
+    <color name="text_title" value="0xECEFF1"/>
+    <color name="text_muted" value="0x90A4AE"/>
+    <color name="text_dim" value="0x78909C"/>
+    <color name="text_value" value="0xFAFAFA"/>
+    <color name="accent" value="0x29B6F6"/>
+    <color name="safe" value="0x43A047"/>
+    <color name="warn" value="0xFB8C00"/>
+    <color name="alarm" value="0xE53935"/>
+    <color name="fault" value="0x8E24AA"/>
+    <color name="offline" value="0x607D8B"/>
+
+    <int name="gap" value="10"/>
+    <int name="pad" value="12"/>
+    <int name="radius" value="10"/>
+    <int name="header_h" value="44"/>
+  </consts>
+
+  <styles>
+    <style name="scr"
+           bg_color="#bg"
+           bg_opa="255"
+           pad_all="0"/>
+
+    <style name="panel"
+           bg_color="#panel"
+           bg_opa="255"
+           radius="#radius"
+           border_width="1"
+           border_color="#track"
+           pad_all="#pad"/>
+
+    <style name="header"
+           bg_color="#panel"
+           bg_opa="255"
+           border_side="bottom"
+           border_width="1"
+           border_color="#track"
+           pad_hor="14"
+           pad_ver="8"/>
+
+    <style name="title"
+           text_color="#text_title"
+           text_letter_space="1"/>
+
+    <style name="muted"
+           text_color="#text_muted"/>
+
+    <style name="dim"
+           text_color="#text_dim"/>
+
+    <style name="value"
+           text_color="#text_value"/>
+
+    <style name="accent_bar"
+           bg_color="#accent"
+           bg_opa="255"
+           radius="3"/>
+
+    <style name="btn_ack"
+           bg_color="#accent"
+           bg_opa="255"
+           radius="8"
+           shadow_width="0"
+           pad_hor="18"
+           pad_ver="10"/>
+
+    <style name="btn_ack_pressed"
+           bg_color="0x0288D1"/>
+
+    <style name="pill"
+           bg_color="#panel"
+           bg_opa="255"
+           radius="14"
+           border_width="1"
+           border_color="#track"
+           pad_hor="10"
+           pad_ver="4"/>
+  </styles>
+
+  <!-- Simulator defaults — replace from firmware later -->
+  <subjects>
+    <float name="temp_c" value="23.4"/>
+    <float name="hum_pct" value="47.8"/>
+    <int name="distance_cm" value="42"/>
+    <!-- 0=SAFE 1=WARN 2=FAULT -->
+    <int name="zone" value="0"/>
+    <string name="zone_label" value="SAFE"/>
+    <string name="status_line" value="DHT22 OK · waiting F401 link"/>
+    <int name="link_f401" value="0"/>
+    <int name="link_eth" value="0"/>
+    <int name="link_nfc" value="0"/>
+    <int name="ack_latched" value="0"/>
+  </subjects>
+</globals>

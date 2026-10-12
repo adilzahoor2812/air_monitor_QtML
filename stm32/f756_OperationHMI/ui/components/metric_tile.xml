@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Reusable metric card: title + big value + unit -->
+<component>
+  <api>
+    <prop name="title" type="string" default="METRIC"/>
+    <prop name="unit" type="string" default=""/>
+    <prop name="accent" type="color" default="0x29B6F6"/>
+    <prop name="value_subject" type="subject"/>
+    <prop name="fmt" type="string" default="%d"/>
+  </api>
+
+  <styles>
+    <style name="tile"
+           bg_color="0x1A2329"
+           bg_opa="255"
+           radius="10"
+           border_width="1"
+           border_color="0x263238"
+           pad_all="12"/>
+  </styles>
+
+  <view extends="lv_obj"
+        width="content"
+        height="content"
+        flex_flow="column"
+        flex_main_place="start"
+        style_flex_track_place="start"
+        style_pad_row="6">
+    <style name="tile"/>
+
+    <!-- Accent strip -->
+    <lv_obj width="100%" height="4"
+            style_bg_color="$accent"
+            style_bg_opa="255"
+            style_radius="2"
+            style_border_width="0"/>
+
+    <lv_label text="$title"
+              style_text_color="0x90A4AE"
+              style_text_letter_space="1"/>
+
+    <lv_obj width="100%" height="content"
+            flex_flow="row"
+            style_pad_column="6"
+            style_flex_cross_place="end"
+            style_bg_opa="0"
+            style_border_width="0">
+      <lv_label bind_text="$value_subject"
+                bind_text-fmt="$fmt"
+                style_text_color="0xECEFF1"/>
+      <lv_label text="$unit"
+                style_text_color="0x90A4AE"/>
+    </lv_obj>
+  </view>
+</component>
