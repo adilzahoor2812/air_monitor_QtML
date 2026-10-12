@@ -1,0 +1,4 @@
+build/
+recordings/
+CMakeUserPresets.json
+.cache/
