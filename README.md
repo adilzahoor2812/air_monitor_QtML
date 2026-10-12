@@ -3,8 +3,11 @@
 **Industrial 480×320 Qt/QML HMI** for live air & proximity telemetry over Ethernet — Jetson Orin Nano operator panel ↔ STM32F756ZG.
 
 <p align="center">
-  <img src="docs/air-monitor-ui.png" alt="AIR MONITOR live operator UI" width="720"/>
+  <img src="docs/air-monitor-ui.png" alt="AIR MONITOR UI — English" width="48%"/>
+  &nbsp;
+  <img src="docs/air-monitor-ui-de.png" alt="AIR MONITOR UI — Deutsch" width="48%"/>
 </p>
+<p align="center"><sub>EN · Operation Overview&nbsp;&nbsp;|&nbsp;&nbsp;DE · Betriebsübersicht</sub></p>
 
 <p align="center">
   <img alt="Qt" src="https://img.shields.io/badge/Qt-6.11-41CD52?logo=qt&logoColor=white"/>
@@ -118,8 +121,9 @@ CSV fallback is also accepted. Operator acknowledge sends `ACK\\n` on the same s
 ├── qml/                 # AIR MONITOR QML UI (480×320)
 ├── src/                 # C++ controller, TCP, telemetry parse
 ├── scripts/             # Jetson Ethernet setup
-├── docs/                # Screenshots & assets
-│   └── air-monitor-ui.png
+├── docs/                  # Screenshots & assets
+│   ├── air-monitor-ui.png     # English UI
+│   └── air-monitor-ui-de.png  # German UI
 ├── CMakeLists.txt
 └── README.md
 ```
@@ -128,9 +132,17 @@ STM32CubeIDE firmware can live alongside under `stm32/` (add from your Mac and p
 
 ---
 
-## Screenshot
+## Screenshots
 
-![AIR MONITOR — live Operation Overview](docs/air-monitor-ui.png)
+### English (EN)
+
+![AIR MONITOR — Operation Overview (EN)](docs/air-monitor-ui.png)
+
+### Deutsch (DE)
+
+![AIR MONITOR — Betriebsübersicht (DE)](docs/air-monitor-ui-de.png)
+
+Toggle language live with the **DE / EN** control in the header.
 
 ---
 
